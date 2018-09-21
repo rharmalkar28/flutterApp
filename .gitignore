@@ -7,5 +7,3 @@ build/
 
 .flutter-plugins
 first_app/test/
-first_app/ios/
-first_app/android/
