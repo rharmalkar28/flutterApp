@@ -6,3 +6,6 @@ first_app/.pub/
 first_app/build/
 
 first_app/.flutter-plugins
+first_app/andriod/app/google-services.json
+andriod/google-services.json
+ios/GoogleService-Info.plist
