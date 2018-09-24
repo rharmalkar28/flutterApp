@@ -1,7 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
+import 'package:first_app/src/appAPI/login.dart';
 
-class loginPg extends StatelessWidget {
+class loginPg extends StatefulWidget {
+  @override
+  _loginForm createState() => _loginForm();
+}
+
+class _loginForm extends State<loginPg> {
+  final userCtl = TextEditingController();
+  final passwdCtl = TextEditingController();
+  
+  final userLogin = new login();
+
+  @override
+  void initState() {
+    super.initState();
+
+    userCtl.addListener(_handleUserName);
+    passwdCtl.addListener(_handlePasswd);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is removed from the Widget tree
+    userCtl.removeListener(_handleUserName);
+    passwdCtl.removeListener(_handlePasswd);
+    userCtl.dispose();
+    passwdCtl.dispose();
+    super.dispose();
+  }
+
+  _handleUserName() {
+    print("Second text field: ${userCtl.text}");
+  }
+
+  _handlePasswd(){
+    print("Second text field: ${passwdCtl.text}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +91,7 @@ class loginPg extends StatelessWidget {
                   hintText: "Enter username",
                   labelText: "Username",
                 ),
+                controller: userCtl,
               ),
             ),
             Container(
@@ -65,6 +103,7 @@ class loginPg extends StatelessWidget {
                   hintText: "Enter password",
                   labelText: "Password",
                 ),
+                controller: passwdCtl,
               ),
             ),
             SizedBox(
@@ -81,7 +120,7 @@ class loginPg extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.green,
-                onPressed: () {},
+                onPressed: (){userLogin.varifyLogin(userCtl.text, passwdCtl.text);},
               ),
             ),
           ],
