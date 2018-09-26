@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class staticData {
   static const String appName = "Cable Orperator";
 
@@ -13,4 +12,10 @@ class staticData {
   static const String success = "Success";
   static const String ok = "OK";
   static const String coming_soon = "Coming Soon";
+
+  //colors
+  static List<Color> appGradients = [
+    Colors.blueGrey.shade800,
+    Colors.black87,
+  ];
 }
