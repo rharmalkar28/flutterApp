@@ -18,4 +18,8 @@ class staticData {
     Colors.blueGrey.shade800,
     Colors.black87,
   ];
+
+  //images
+  static const String imageDir = "assets/imgs";
+  static const String profileImage = "$imageDir/profile.jpg";
 }

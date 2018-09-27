@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
 import 'package:first_app/uiComponents/loginPg.dart';
+//import 'package:first_app/uiComponents/SubsList.dart';
 
 class AppPage extends StatelessWidget{
   final materialApp = MaterialApp(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
-import 'package:first_app/src/appAPI/login.dart';
+import 'package:first_app/Controller/LoginCtl.dart';
 
 class loginPg extends StatefulWidget {
   @override
@@ -10,8 +10,8 @@ class loginPg extends StatefulWidget {
 class _loginForm extends State<loginPg> {
   final userCtl = TextEditingController();
   final passwdCtl = TextEditingController();
-  
-  final userLogin = new login();
+
+  final userLogin = new LoginCtl();
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _loginForm extends State<loginPg> {
     print("Second text field: ${userCtl.text}");
   }
 
-  _handlePasswd(){
+  _handlePasswd() {
     print("Second text field: ${passwdCtl.text}");
   }
 
@@ -120,7 +120,9 @@ class _loginForm extends State<loginPg> {
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.green,
-                onPressed: (){userLogin.varifyLogin(userCtl.text, passwdCtl.text);},
+                onPressed: () {
+                  userLogin.logInUser(context, userCtl.text, passwdCtl.text);
+                },
               ),
             ),
           ],

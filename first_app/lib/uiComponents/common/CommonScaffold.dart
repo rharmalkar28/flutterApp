@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
+import 'package:first_app/uiComponents/common/CustomFloat.dart';
+import 'package:first_app/uiComponents/common/CommonDrawer.dart';
 
 class CommonScaffold extends StatelessWidget {
   final appTitle;
@@ -113,7 +115,7 @@ class CommonScaffold extends StatelessWidget {
                     )
                   : null,
               icon: floatingIcon,
-              qrCallback: () {},
+              cfCallback: () {},
             )
           : null,
       floatingActionButtonLocation: centerDocked
