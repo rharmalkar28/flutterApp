@@ -128,6 +128,7 @@ class SubsList extends StatelessWidget {
       appTitle: "Subscribers",
       showDrawer: true,
       showFAB: false,
+      isSearching: true,
       actionFirstIcon: Icons.search,
       bodyData: bodyData(),
     );

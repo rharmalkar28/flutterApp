@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
 import 'package:first_app/uiComponents/common/CustomFloat.dart';
@@ -15,6 +16,7 @@ class CommonScaffold extends StatelessWidget {
   final floatingIcon;
   final centerDocked;
   final elevation;
+  final isSearching;
 
   CommonScaffold(
       {this.appTitle,
@@ -27,7 +29,8 @@ class CommonScaffold extends StatelessWidget {
       this.showBottomNav = false,
       this.centerDocked = false,
       this.floatingIcon,
-      this.elevation = 4.0});
+      this.elevation = 4.0,
+      this.isSearching = false});
 
   Widget myBottomBar() => new BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -81,6 +84,58 @@ class CommonScaffold extends StatelessWidget {
         ),
       );
 
+  //https://www.developerlibs.com/2018/06/flutter-apply-search-box-in-appbar.html
+  Widget _buildTitle(BuildContext context) {
+    var horizontalTitleAlignment =
+        Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+
+    return new InkWell(
+      onTap: () => scaffoldKey.currentState.openDrawer(),
+      child: new Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: horizontalTitleAlignment,
+          children: <Widget>[
+            const Text('Seach box'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchField() {
+    return new TextField(
+      //controller: _searchQuery,
+      autofocus: true,
+      decoration: const InputDecoration(
+        hintText: 'Search...',
+        border: InputBorder.none,
+        hintStyle: const TextStyle(color: Colors.white30),
+      ),
+      style: const TextStyle(color: Colors.white, fontSize: 16.0),
+      //onChanged: updateSearchQuery,
+    );
+  }
+
+  List<Widget> _buildActions() {
+    // if (_isSearching) {
+    // }
+    return <Widget>[
+      SizedBox(
+        width: 5.0,
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: Icon(actionFirstIcon),
+      ),
+      IconButton(
+        onPressed: () {},
+        icon: Icon(Icons.more_vert),
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,20 +144,9 @@ class CommonScaffold extends StatelessWidget {
       appBar: AppBar(
         elevation: elevation,
         backgroundColor: Colors.black,
-        title: Text(appTitle),
-        actions: <Widget>[
-          SizedBox(
-            width: 5.0,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(actionFirstIcon),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_vert),
-          )
-        ],
+        leading: isSearching ? const BackButton() : null,
+        title: isSearching ? _buildSearchField() : _buildTitle(context), //Text(appTitle),
+        actions: _buildActions(),
       ),
       drawer: showDrawer ? CommonDrawer() : null,
       body: bodyData,
