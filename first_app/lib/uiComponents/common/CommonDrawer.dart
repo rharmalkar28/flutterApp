@@ -35,7 +35,7 @@ class CommonDrawer extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
             ),
             leading: Icon(
-              Icons.shopping_cart,
+              Icons.person,
               color: Colors.green,
             ),
           ),

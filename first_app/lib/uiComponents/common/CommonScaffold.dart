@@ -30,7 +30,7 @@ class CommonScaffold extends StatelessWidget {
       this.centerDocked = false,
       this.floatingIcon,
       this.elevation = 4.0,
-      this.isSearching = false});
+      this.isSearching});
 
   Widget myBottomBar() => new BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -107,7 +107,8 @@ class CommonScaffold extends StatelessWidget {
   Widget _buildSearchField() {
     return new TextField(
       //controller: _searchQuery,
-      autofocus: true,
+      //autofocus: true,
+       maxLines: 1,
       decoration: const InputDecoration(
         hintText: 'Search...',
         border: InputBorder.none,
@@ -138,6 +139,7 @@ class CommonScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("test");
     return Scaffold(
       key: scaffoldKey != null ? scaffoldKey : null,
       backgroundColor: backGroundColor != null ? backGroundColor : null,
