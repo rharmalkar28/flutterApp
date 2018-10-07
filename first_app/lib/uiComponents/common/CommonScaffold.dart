@@ -5,6 +5,8 @@ import 'package:first_app/uiComponents/common/CustomFloat.dart';
 import 'package:first_app/uiComponents/common/CommonDrawer.dart';
 
 class CommonScaffold extends StatelessWidget {
+
+  final VoidCallback onSignedOut;
   final appTitle;
   final Widget bodyData;
   final showFAB;
@@ -17,6 +19,7 @@ class CommonScaffold extends StatelessWidget {
   final centerDocked;
   final elevation;
   final isSearching;
+  final VoidCallback floatingCb;
 
   CommonScaffold(
       {this.appTitle,
@@ -29,8 +32,11 @@ class CommonScaffold extends StatelessWidget {
       this.showBottomNav = false,
       this.centerDocked = false,
       this.floatingIcon,
+      this.floatingCb,
       this.elevation = 4.0,
-      this.isSearching});
+      this.isSearching = false,
+      this.onSignedOut
+      });
 
   Widget myBottomBar() => new BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -50,7 +56,7 @@ class CommonScaffold extends StatelessWidget {
                   onTap: () {},
                   child: Center(
                     child: new Text(
-                      "ADD TO WISHLIST",
+                      "List",
                       style: new TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
@@ -70,7 +76,7 @@ class CommonScaffold extends StatelessWidget {
                   splashColor: Colors.yellow,
                   child: Center(
                     child: new Text(
-                      "ORDER PAGE",
+                      "Subs",
                       style: new TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.bold,
@@ -150,7 +156,7 @@ class CommonScaffold extends StatelessWidget {
         title: isSearching ? _buildSearchField() : _buildTitle(context), //Text(appTitle),
         actions: _buildActions(),
       ),
-      drawer: showDrawer ? CommonDrawer() : null,
+      drawer: showDrawer ? CommonDrawer(onSignedOut: onSignedOut) : null,
       body: bodyData,
       floatingActionButton: showFAB
           ? CustomFloat(
@@ -161,7 +167,7 @@ class CommonScaffold extends StatelessWidget {
                     )
                   : null,
               icon: floatingIcon,
-              cfCallback: () {},
+              cfCallback: floatingCb,
             )
           : null,
       floatingActionButtonLocation: centerDocked

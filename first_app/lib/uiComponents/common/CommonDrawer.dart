@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/common/staticData.dart';
+import 'package:first_app/src/serviceAPI/AuthProvider.dart';
 
 class CommonDrawer extends StatelessWidget {
+  
+  CommonDrawer({this.onSignedOut});
+  final VoidCallback onSignedOut;
+
+  void _signOut(BuildContext context) async {
+    try {
+      var auth = AuthProvider.of(context).auth;
+      await auth.signOut();
+      onSignedOut();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -62,13 +77,14 @@ class CommonDrawer extends StatelessWidget {
           Divider(),
           new ListTile(
             title: Text(
-              "Settings",
+              "log out",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
             ),
             leading: Icon(
               Icons.settings,
               color: Colors.brown,
             ),
+            onTap: () {_signOut(context);},
           ),
           Divider(),
           //MyAboutTile()

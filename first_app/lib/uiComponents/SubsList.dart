@@ -4,6 +4,8 @@ import 'package:first_app/src/model/Subscriber.dart';
 import 'package:first_app/Controller/SubscriberCtl.dart';
 
 class SubsList extends StatelessWidget {
+  SubsList({this.onSignedOut});
+  final VoidCallback onSignedOut;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   Widget subscriberGrid(List<Subscriber> subscribers) => ListView(
@@ -43,14 +45,17 @@ class SubsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      scaffoldKey: scaffoldKey,
-      appTitle: "Subscribers",
-      showDrawer: true,
-      showFAB: false,
-      isSearching: true,
-      actionFirstIcon: Icons.search,
-      bodyData: bodyData(),
-    );
+        scaffoldKey: scaffoldKey,
+        appTitle: "Subscribers",
+        showDrawer: true,
+        showFAB: true,
+        floatingCb: () {
+          print("test error");
+        },
+        isSearching: false,
+        actionFirstIcon: Icons.search,
+        bodyData: bodyData(),
+        onSignedOut: onSignedOut);
   }
 }
 
@@ -66,7 +71,7 @@ class ChildCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           new ListTile(
-           // leading: const Icon(Icons.album),
+            // leading: const Icon(Icons.album),
             title: new Text(this.name),
             subtitle: new Text("${this.street}, ${this.address}}"),
           ),
