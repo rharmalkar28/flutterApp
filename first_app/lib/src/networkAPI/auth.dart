@@ -33,4 +33,9 @@ class Auth implements BaseAuth {
   Future<void> signOut() async {
     return _firebaseAuth.signOut();
   }
+
+  Future<String> changePassword({oldPasswd, newPasswd}) async {
+    // FirebaseUser user = await _firebaseAuth.currentUser();
+    // user.reauthenticateAndRetrieveDataWithCredential(oldPasswd).then((){}).catch((){});
+  }
 }
