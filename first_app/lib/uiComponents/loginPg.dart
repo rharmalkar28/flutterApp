@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
+// import 'package:scoped_model/scoped_model.dart';
 import 'package:first_app/common/staticData.dart';
-import 'package:first_app/Controller/LoginCtl.dart';
-import 'package:first_app/src/appAPI/CableOperator.dart';
-import 'package:first_app/uiComponents/SubsList.dart';
+// import 'package:first_app/Controller/LoginCtl.dart';
+// import 'package:first_app/src/appAPI/CableOperator.dart';
+// import 'package:first_app/uiComponents/SubsList.dart';
 import 'package:first_app/src/serviceAPI/AuthProvider.dart';
 
 // https://github.com/bizz84/coding-with-flutter-login-demo/blob/master/lib/login_page.dart

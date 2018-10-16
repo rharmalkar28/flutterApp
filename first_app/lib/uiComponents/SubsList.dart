@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:first_app/uiComponents/common/CommonScaffold.dart';
 import 'package:first_app/src/model/Subscriber.dart';
 import 'package:first_app/Controller/SubscriberCtl.dart';
+import 'package:first_app/src/serviceAPI/SubsProvider.dart';
 
 class SubsList extends StatelessWidget {
   SubsList({this.onSignedOut});
@@ -19,7 +20,7 @@ class SubsList extends StatelessWidget {
             .toList(),
       );
 
-  Widget bodyData() {
+  Widget bodyData(context) {
     SubscriberCtl subscriberCtl = SubscriberCtl();
     return StreamBuilder<List<Subscriber>>(
         stream: subscriberCtl.subscriberList,
@@ -28,6 +29,13 @@ class SubsList extends StatelessWidget {
               ? subscriberGrid(snapshot.data)
               : Center(child: CircularProgressIndicator());
         });
+
+    // var subs = SubsProvider.of(context).NTsubscriber;
+    // subs.listSubscriber().then((List<Subscriber> ab) {
+    //   print("check list ${ab.length}");
+    //   return subscriberGrid(ab);
+    // });
+    // print("check end");
   }
 
   void showSnackBar() {
@@ -54,7 +62,7 @@ class SubsList extends StatelessWidget {
         },
         isSearching: false,
         actionFirstIcon: Icons.search,
-        bodyData: bodyData(),
+        bodyData: bodyData(context),
         onSignedOut: onSignedOut);
   }
 }
@@ -63,6 +71,14 @@ class ChildCard extends StatelessWidget {
   final String name, address, street, plan;
 
   ChildCard({this.name, this.address, this.street, this.plan});
+
+  void getSubsDetails(context) {
+    print("in getSubsDetails");
+    var subs = SubsProvider.of(context).NTsubscriber;
+    subs.listSubscriber().then((List<Subscriber> ab) {
+      print("check list $ab");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +97,9 @@ class ChildCard extends StatelessWidget {
               children: <Widget>[
                 new FlatButton(
                   child: const Text('Details'),
-                  onPressed: () {/* ... */},
+                  onPressed: () {
+                    getSubsDetails(context);
+                  },
                 ),
               ],
             ),

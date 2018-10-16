@@ -4,6 +4,8 @@ class Subscriber {
   String address;
   String street;
   String plan;
+  int balance;
 
-  Subscriber({this.id,this.name,this.address,this.street,this.plan});
+  Subscriber(
+      {this.id, this.name, this.address, this.street, this.plan, this.balance});
 }
