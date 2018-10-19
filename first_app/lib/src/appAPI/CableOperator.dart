@@ -4,7 +4,6 @@ import 'package:first_app/src/appAPI/SubscriberOperations.dart';
 import 'package:first_app/src/model/LoginUser.dart';
 import 'package:first_app/src/model/Subscriber.dart';
 import 'package:first_app/src/appAPI/login.dart';
-import 'package:first_app/uiComponents/SubsList.dart';
 
 class CableOperator extends Model {
   LoginUser user;
