@@ -1,5 +1,4 @@
 import 'package:first_app/src/model/Subscriber.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SubscriberOperations {
 

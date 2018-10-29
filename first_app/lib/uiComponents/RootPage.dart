@@ -10,6 +10,7 @@ class RootPage extends StatefulWidget {
   State<StatefulWidget> createState() => _RootPageState();
 }
 
+// add routes of the app over hear
 enum AuthStatus {
   isProcessing,
   notSignedIn,

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:first_app/src/appAPI/SubscriberOperations.dart';
+import 'package:first_app/src/networkAPI/NTsubscriber.dart';
 import 'package:first_app/src/model/Subscriber.dart';
 
 class SubscriberCtl {
