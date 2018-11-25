@@ -1,41 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/uiComponents/common/CommonScaffold.dart';
 import 'package:first_app/src/model/Subscriber.dart';
-import 'package:first_app/Controller/SubscriberCtl.dart';
 import 'package:first_app/src/serviceAPI/SubsProvider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SubsList extends StatelessWidget {
-  SubsList({this.onSignedOut});
+  SubsList({this.onSignedOut, this.userId, this.db});
   final VoidCallback onSignedOut;
+  final String userId;
+  final Object db;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Widget subscriberGrid(List<Subscriber> subscribers) => ListView(
+  Widget subscriberGrid(QuerySnapshot subscribers) => ListView(
         shrinkWrap: true,
-        children: subscribers
+        children: subscribers.documents
             .map((subscriber) => new ChildCard(
-                name: subscriber.name,
-                address: subscriber.address,
-                plan: subscriber.plan,
-                street: subscriber.street))
+                name: subscriber["name"],
+                address: subscriber["address"],
+                plan: subscriber["plan"],
+                street: subscriber["street"]))
             .toList(),
       );
 
   Widget bodyData(context) {
-    SubscriberCtl subscriberCtl = SubscriberCtl();
-    return StreamBuilder<List<Subscriber>>(
-        stream: subscriberCtl.subscriberList,
+    return StreamBuilder<QuerySnapshot>(
+        stream: Firestore.instance.collection('names').snapshots(),
         builder: (context, snapshot) {
           return snapshot.hasData
               ? subscriberGrid(snapshot.data)
               : Center(child: CircularProgressIndicator());
         });
-
-    // var subs = SubsProvider.of(context).NTsubscriber;
-    // subs.listSubscriber().then((List<Subscriber> ab) {
-    //   print("check list ${ab.length}");
-    //   return subscriberGrid(ab);
-    // });
-    // print("check end");
   }
 
   void showSnackBar() {

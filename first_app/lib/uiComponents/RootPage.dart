@@ -61,7 +61,7 @@ class _RootPageState extends State<RootPage> {
       case AuthStatus.signedIn:
         return SubsProvider(
           NTsubscriber: new NTsubscriber(currentUserId, null),
-          child: SubsList(onSignedOut: _signedOut),
+          child: SubsList(onSignedOut: _signedOut, userId: currentUserId, db: null),
         );
       // return SubsList(
       //   onSignedOut: _signedOut,
