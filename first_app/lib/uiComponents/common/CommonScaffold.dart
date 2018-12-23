@@ -20,6 +20,7 @@ class CommonScaffold extends StatelessWidget {
   final elevation;
   final isSearching;
   final VoidCallback floatingCb;
+  final BuildContext mainContext;
 
   CommonScaffold(
       {this.appTitle,
@@ -35,7 +36,8 @@ class CommonScaffold extends StatelessWidget {
       this.floatingCb,
       this.elevation = 4.0,
       this.isSearching = false,
-      this.onSignedOut
+      this.onSignedOut,
+      this.mainContext
       });
 
   Widget myBottomBar() => new BottomAppBar(
@@ -156,7 +158,7 @@ class CommonScaffold extends StatelessWidget {
         title: isSearching ? _buildSearchField() : _buildTitle(context), //Text(appTitle),
         actions: _buildActions(),
       ),
-      drawer: showDrawer ? CommonDrawer(onSignedOut: onSignedOut) : null,
+      drawer: showDrawer ? CommonDrawer(onSignedOut: onSignedOut, mainContext: context) : null,
       body: bodyData,
       floatingActionButton: showFAB
           ? CustomFloat(

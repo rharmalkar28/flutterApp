@@ -4,8 +4,9 @@ import 'package:first_app/src/serviceAPI/AuthProvider.dart';
 
 class CommonDrawer extends StatelessWidget {
   
-  CommonDrawer({this.onSignedOut});
+  CommonDrawer({this.onSignedOut, this.mainContext});
   final VoidCallback onSignedOut;
+  final BuildContext mainContext;
 
   void _signOut(BuildContext context) async {
     try {
@@ -73,6 +74,7 @@ class CommonDrawer extends StatelessWidget {
               Icons.timeline,
               color: Colors.cyan,
             ),
+            onTap: () {Navigator.pushNamed(mainContext, '/a');},
           ),
           Divider(),
           new ListTile(

@@ -8,21 +8,21 @@ import 'package:first_app/src/networkAPI/auth.dart';
 //import 'package:first_app/uiComponents/SubsList.dart';
 
 class AppPage extends StatelessWidget{
-  final materialApp = MaterialApp(
-    title: staticData.appName,
-    theme: ThemeData(
-      primaryColor: Colors.black,
-      primarySwatch: Colors.amber
-    ),
-    debugShowCheckedModeBanner: false,
-    showPerformanceOverlay: false,
-    home: RootPage(),
-  );
+  // final materialApp = MaterialApp(
+  //   title: staticData.appName,
+  //   theme: ThemeData(
+  //     primaryColor: Colors.black,
+  //     primarySwatch: Colors.amber
+  //   ),
+  //   debugShowCheckedModeBanner: false,
+  //   showPerformanceOverlay: false,
+  //   home: RootPage(),
+  // );
   @override
   Widget build(BuildContext context) {
     return AuthProvider(
         auth: new Auth(),
-        child: materialApp
+        child: RootPage()
         );
   }
 }

@@ -57,7 +57,9 @@ class SubsList extends StatelessWidget {
         isSearching: false,
         actionFirstIcon: Icons.search,
         bodyData: bodyData(context),
-        onSignedOut: onSignedOut);
+        onSignedOut: onSignedOut,
+        mainContext: context,
+        );
   }
 }
 
